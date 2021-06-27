@@ -1,17 +1,19 @@
 name: Model Deployment
 on: 
-  repository_dispatch:
-    types: [deploy-event]
+  push:
+    branches: [ main ]
 jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
       - name: Deploy in hike-and-seek cloud
         uses: hashicorp/setup-terraform@v1
-     
       - run: terraform init
-      - run: terraform plan 
-      - run: terraform apply -auto-approve 
+      - run: terraform plan
+      - run: terraform apply -auto-approve
 
             
 
