@@ -1,9 +1,9 @@
 resource "null_resource" "ssh_target" {
   connection {
     type        = "ssh"
-    user        = "$var.user"
-    host        = "$var.host"
-    password    = "$var.password"
+    user        = var.user
+    host        = var.host
+    password    = var.password
     port        = 29
   }
 
