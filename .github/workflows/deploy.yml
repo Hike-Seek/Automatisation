@@ -12,7 +12,7 @@ jobs:
       - name: Deploy in hike-and-seek cloud
         uses: hashicorp/setup-terraform@v1
       - run: terraform init
-      - run: terraform plan
+      - run: terraform plan -var "url=${{ secrets.REMOTE_GIT_URL }}" -var "user=${{ secrets.USER }}" -var "password=${{ secrets.REMOTE_PASSWORD }}" -var "host=${{ secrets.REMOTE_IP }}"
       - run: terraform apply -var "url=${{ secrets.REMOTE_GIT_URL }}" -var "user=${{ secrets.USER }}" -var "password=${{ secrets.REMOTE_PASSWORD }}" -var "host=${{ secrets.REMOTE_IP }}" -auto-approve 
 
             
