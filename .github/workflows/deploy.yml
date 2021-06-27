@@ -8,10 +8,19 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: echo "host=${{ secrets.REMOTE_IP }}" "url=${{ secrets.REMOTE_GIT_URL }}" "user=${{ secrets.USER }}" "password=${{ secrets.REMOTE_PASSWORD }}"
+        with:
+          hots: ${{ secrets.REMOTE_IP }}
+          url: ${{ secrets.REMOTE_GIT_URL }}
+          user: ${{ secrets.USER }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
 
       - name: Deploy in hike-and-seek cloud
         uses: hashicorp/setup-terraform@v1
+        with:
+          hots: ${{ secrets.REMOTE_IP }}
+          url: ${{ secrets.REMOTE_GIT_URL }}
+          user: ${{ secrets.USER }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
       
       - run: terraform init
       - run: terraform plan -var "url=${{ secrets.REMOTE_GIT_URL }}" -var "user=${{ secrets.USER }}" -var "password=${{ secrets.REMOTE_PASSWORD }}" -var "host=${{ secrets.REMOTE_IP }}"
