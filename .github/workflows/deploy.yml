@@ -13,7 +13,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
       - run: terraform init
       - run: terraform plan
-      - run: terraform apply -auto-approve 
+      - run: terraform apply -var "url=${{ secrets.REMOTE_GIT_URL }}" -var "user=${{ secrets.USER }}" -var "password=${{ secrets.REMOTE_PASSWORD }}" -var "host=${{ secrets.REMOTE_IP }}" -auto-approve 
 
             
 
