@@ -9,7 +9,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
         with:
-          hots: ${{ secrets.REMOTE_IP }}
+          host: ${{ secrets.REMOTE_IP }}
           url: ${{ secrets.REMOTE_GIT_URL }}
           user: ${{ secrets.USER }}
           password: ${{ secrets.REMOTE_PASSWORD }}
@@ -17,7 +17,7 @@ jobs:
       - name: Deploy in hike-and-seek cloud
         uses: hashicorp/setup-terraform@v1
         with:
-          hots: ${{ secrets.REMOTE_IP }}
+          host: ${{ secrets.REMOTE_IP }}
           url: ${{ secrets.REMOTE_GIT_URL }}
           user: ${{ secrets.USER }}
           password: ${{ secrets.REMOTE_PASSWORD }}
